@@ -1,0 +1,11 @@
+{
+    "name": "rasel/image",
+    "autoload": {
+        "psr-4": {
+            "Rasel\\Image\\": "src/"
+        }
+    },
+    "require": {
+        "dantsu/php-image-editor": "^1.4"
+    }
+}
