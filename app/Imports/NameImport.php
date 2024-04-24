@@ -13,6 +13,6 @@ class NameImport implements ToCollection,WithHeadingRow
     */
     public function collection(Collection $collection)
     {
-        dd($collection);
+        //
     }
 }

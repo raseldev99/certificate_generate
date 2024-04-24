@@ -1,4 +1,7 @@
 <?php
+ini_set('memory_limit', '1024G');
+ini_set('max_execution_time', 3600);
+set_time_limit(3600);
 
 use Illuminate\Http\Request;
 
