@@ -208,7 +208,7 @@ class GenerateFromFile extends Component
 		   'type'=>$this->type,
 		   'font'=>$font_path
 	   ]);
-	   flash()->addSuccess('Generated Successfully');
+	   flash()->addSuccess('Generating certificate. Wait few minute.');
 	   
 	   return redirect()->route('download');
 	}

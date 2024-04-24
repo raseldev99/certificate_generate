@@ -4,7 +4,10 @@
            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                {{ __('Download certificate') }}
            </h2>
-           <a href="{{url()->previous()}}" class="text-sm inline-block py-2 px-4 rounded font-medium text-white bg-gray-600">Back</a>
+           <div class="flex gap-x-5">
+               <a href="{{url()->previous()}}" class="text-sm inline-block py-2 px-4 rounded font-medium text-white bg-gray-600">Back</a>
+               <a href="/jobs" class="inline-block font-medium text-sm text-white py-1.5 px-4 rounded bg-blue-500">Manage queue</a>
+           </div>
        </div>
     </x-slot>
 

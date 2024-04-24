@@ -8,11 +8,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\File;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 use ZipArchive;
 
 class GenerateZip implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels,IsMonitored;
 
     /**
      * Create a new job instance.
