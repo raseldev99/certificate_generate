@@ -46,7 +46,7 @@ class ProcessImage implements ShouldQueue
 			foreach ($this->names as $index => $name){
 				Image::fromPath( $this->customize['src'])
 					->writeText($name, $this->customize['font'],$this->customize['font_size'],$this->customize['font_color'],$this->customize['position_x'],$this->customize['position_y'],$this->customize['anchor_x'],$this->customize['anchor_y'],$this->customize['rotation'],$this->customize['letterSpacing'])
-				->savePNG(public_path('/certificates/').$index.'.'.$name.'.jpg');
+				->savePNG(public_path('/certificates/').$index.'.'.$name.'.png');
 	     	}
 		}
 		

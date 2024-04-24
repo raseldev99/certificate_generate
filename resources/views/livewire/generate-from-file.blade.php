@@ -165,5 +165,7 @@
    @if(!empty($preview_img))
         <img width="700" src="{{$preview_img}}" alt="">
    @endif
+    
+    <div class="fixed w-full h-full z-30 bg-gray-700 opacity-75"></div>
 
 </div>
