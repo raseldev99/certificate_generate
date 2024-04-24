@@ -53,7 +53,7 @@
                 <label for="position_x" class="label !flex items-center gap-x-2">
                     Position X
                     <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" wire:model="is_customs.position_x" class="sr-only peer">
+                        <input type="checkbox" wire:model.live="is_customs.position_x" class="sr-only peer">
                         <div class="relative w-7 h-4 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all  peer-checked:bg-blue-600"></div>
                     </label>
                 </label>
@@ -71,7 +71,7 @@
                 <label for="position_y" class="label !flex items-center gap-x-2">
                     Position Y
                     <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" wire:model="is_customs.position_y" class="sr-only peer">
+                        <input type="checkbox" wire:model.live="is_customs.position_y" class="sr-only peer">
                         <div class="relative w-7 h-4 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all  peer-checked:bg-blue-600"></div>
                     </label>
                 </label>
@@ -91,7 +91,7 @@
                 <label for="anchor_x" class="label !flex items-center gap-x-2">
                     Anchor X
                     <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" wire:model="is_customs.anchor_x" class="sr-only peer">
+                        <input type="checkbox" wire:model.live="is_customs.anchor_x" class="sr-only peer">
                         <div class="relative w-7 h-4 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all  peer-checked:bg-blue-600"></div>
                     </label>
                 </label>
@@ -109,7 +109,7 @@
                 <label for="anchor_y" class="label !flex items-center gap-x-2">
                     Anchor Y
                     <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" wire:model="is_customs.anchor_y" class="sr-only peer">
+                        <input type="checkbox" wire:model.live="is_customs.anchor_y" class="sr-only peer">
                         <div class="relative w-7 h-4 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all  peer-checked:bg-blue-600"></div>
                     </label>
                 </label>
