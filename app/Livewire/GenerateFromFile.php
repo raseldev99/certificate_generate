@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
+use ZipArchive;
 
 class GenerateFromFile extends Component
 {
@@ -178,9 +179,6 @@ class GenerateFromFile extends Component
 		$anchor_x = $this->is_customs['anchor_x'] ? $this->anchor_x : $this->anchor_x_s;
 		$anchor_y = $this->is_customs['anchor_y'] ? $this->anchor_y : $this->anchor_y_s;
 		
-		
-		$current_date = Carbon::now()->format('d-m-Y_H-i-s');
-		$path = storage_path("certificates/certificates({$current_date}).zip");
 		if (!empty($this->template_url) && !file_exists(base_path('public/templates/'.$this->template_url))){
 			return flash()->addWarning('Selected Template not Exist!');
 		}elseif (!empty($this->template_url)){
@@ -195,21 +193,56 @@ class GenerateFromFile extends Component
 		}else{
 			$font_path = public_path('fonts/'.$this->font);
 		}
-	   ProcessImage::withChain([new GenerateZip($path)])->dispatch($this->names,[
-		   'font_size'=>$this->font_size,
-		   'font_color'=>$this->font_color,
-		   'position_x'=>$position_x,
-		   'position_y'=>$position_y,
-		   'anchor_x'=>$anchor_x,
-		   'anchor_y'=>$anchor_y,
-		   'rotation' => $this->rotation,
-		   'letterSpacing' => $this->letterSpacing,
-		   'src'=> $src,
-		   'type'=>$this->type,
-		   'font'=>$font_path
-	   ]);
-	   flash()->addSuccess('Generating certificate. Wait few minute.');
-	   
+//	   ProcessImage::withChain([new GenerateZip($path)])->dispatch($this->names,[
+//		   'font_size'=>$this->font_size,
+//		   'font_color'=>$this->font_color,
+//		   'position_x'=>$position_x,
+//		   'position_y'=>$position_y,
+//		   'anchor_x'=>$anchor_x,
+//		   'anchor_y'=>$anchor_y,
+//		   'rotation' => $this->rotation,
+//		   'letterSpacing' => $this->letterSpacing,
+//		   'src'=> $src,
+//		   'type'=>$this->type,
+//		   'font'=>$font_path
+//	   ]);
+		
+		if (File::exists(public_path('/certificates'))){
+			File::deleteDirectory(public_path('/certificates'));
+		}
+		File::makeDirectory(public_path('/certificates'));
+		
+		if ($this->type === 'jpg'){
+			foreach ($this->names as $index => $name){
+				Image::fromPath($src)
+					->writeText($name, $font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
+					->saveJPG(public_path('/certificates/').$index.'.'.$name.'.jpg',100);
+			}
+		}elseif ($this->type === 'png'){
+			foreach ($this->names as $index => $name){
+				Image::fromPath($src)
+					->writeText($name, $font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
+					->savePNG(public_path('/certificates/').$index.'.'.$name.'.png');
+			}
+		}
+		
+		//Generate zip file of certificates
+		$folderPath = public_path('/certificates/');
+		$current_date = Carbon::now()->format('d-m-Y_H-i-s');
+		$path = storage_path("certificates/certificates({$current_date}).zip");
+		$zip = new ZipArchive;
+		if ($zip->open($path, ZipArchive::CREATE) === TRUE) {
+			$files = File::allFiles($folderPath);
+			foreach ($files as $file) {
+				$relativePath = basename($file);
+				$zip->addFile($file, $relativePath);
+			}
+			$zip->close();
+			File::deleteDirectory($folderPath);
+		} else {
+			flash()->addWarning('Something was wrong.');
+		}
+	   flash()->addSuccess('Certificate generate successfully.');
 	   return redirect()->route('download');
 	}
 	
