@@ -239,25 +239,28 @@ class GenerateFromFile extends Component
 			File::deleteDirectory(public_path('/certificates'));
 		}
 		File::makeDirectory(public_path('/certificates'));
-		
+		$store_path = public_path('/certificates/');
+		$light_font = base_path('public/roboto-light.ttf');
+		$medium_font = base_path('public/font.ttf');
+		$regular_font = base_path('public/roboto-regular.ttf');
 		if ($this->isDefault){
 			if ($this->type === 'jpg'){
 				foreach ($this->names as $index => $name){
 					Image::fromPath($src)
 						->writeText($name, $font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
-						->writeText($this->successful_text,base_path('public/roboto-light.ttf'),48,'#000000',Image::ALIGN_CENTER,1630,Image::ALIGN_CENTER,Image::ALIGN_TOP)
-						->writeText($this->course_name,base_path('public/font.ttf'),48,'#000000',Image::ALIGN_CENTER,1723,Image::ALIGN_CENTER,Image::ALIGN_TOP)
-						->writeText($this->issue_date,base_path('public/roboto-regular.ttf'),36,'#000000',722,2087,Image::ALIGN_LEFT,Image::ALIGN_TOP)
-						->saveJPG(public_path('/certificates/').$index.'.'.$name.'.jpg',100);
+						->writeText($this->successful_text,$light_font,48,'#000000',Image::ALIGN_CENTER,1630,Image::ALIGN_CENTER,Image::ALIGN_TOP)
+						->writeText($this->course_name,$medium_font,48,'#000000',Image::ALIGN_CENTER,1723,Image::ALIGN_CENTER,Image::ALIGN_TOP)
+						->writeText($this->issue_date,$regular_font,36,'#000000',722,2087,Image::ALIGN_LEFT,Image::ALIGN_TOP)
+						->saveJPG($store_path.($index + 1).'.'.$name.'.jpg',100);
 				}
 			}elseif ($this->type === 'png'){
 				foreach ($this->names as $index => $name){
 					Image::fromPath($src)
 						->writeText($name, $font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
-						->writeText($this->successful_text,base_path('public/roboto-light.ttf'),48,'#000000',Image::ALIGN_CENTER,1630,Image::ALIGN_CENTER,Image::ALIGN_TOP)
-						->writeText($this->course_name,base_path('public/font.ttf'),48,'#000000',Image::ALIGN_CENTER,1723,Image::ALIGN_CENTER,Image::ALIGN_TOP)
-						->writeText($this->issue_date,base_path('public/roboto-regular.ttf'),36,'#000000',722,2087,Image::ALIGN_LEFT,Image::ALIGN_TOP)
-						->savePNG(public_path('/certificates/').$index.'.'.$name.'.png');
+						->writeText($this->successful_text,$light_font,48,'#000000',Image::ALIGN_CENTER,1630,Image::ALIGN_CENTER,Image::ALIGN_TOP)
+						->writeText($this->course_name,$medium_font,48,'#000000',Image::ALIGN_CENTER,1723,Image::ALIGN_CENTER,Image::ALIGN_TOP)
+						->writeText($this->issue_date,$regular_font,36,'#000000',722,2087,Image::ALIGN_LEFT,Image::ALIGN_TOP)
+						->savePNG($store_path.($index + 1).'.'.$name.'.png');
 				}
 			}
 		}else{
@@ -265,13 +268,13 @@ class GenerateFromFile extends Component
 				foreach ($this->names as $index => $name){
 					Image::fromPath($src)
 						->writeText($name, $font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
-						->saveJPG(public_path('/certificates/').$index.'.'.$name.'.jpg',100);
+						->saveJPG($store_path.($index + 1).'.'.$name.'.jpg',100);
 				}
 			}elseif ($this->type === 'png'){
 				foreach ($this->names as $index => $name){
 					Image::fromPath($src)
 						->writeText($name, $font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
-						->savePNG(public_path('/certificates/').$index.'.'.$name.'.png');
+						->savePNG($store_path.($index + 1).'.'.$name.'.png');
 				}
 			}
 		}
