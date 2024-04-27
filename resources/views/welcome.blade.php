@@ -14,6 +14,6 @@
     </x-slot>
 
     <div class="py-12">
-        <livewire:generate-from-file template_url="{{ isset($template_url) ? $template_url : ''  }}" />
+        <livewire:generate-from-file isDefault="{{$isDefault}}" template_url="{{ isset($template_url) ? $template_url : ''  }}" />
     </div>
 </x-app-layout>

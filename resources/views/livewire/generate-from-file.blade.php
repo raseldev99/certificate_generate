@@ -138,6 +138,29 @@
                 <input type="number" id="letterSpacing" wire:model="letterSpacing" step="0.01" class="number" placeholder="00.00" />
             </div>
         </div>
+        @if($isDefault)
+        <div class="mb-5">
+            <label class="label" for="successful_text">Successful Text</label>
+            <input class="number" wire:model="successful_text" id="successful_text" type="text">
+            @error('successful_text')
+            <p class="text-sm text-red-600 font-medium">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-5">
+            <label class="label" for="course_name">Course Name</label>
+            <input class="number" wire:model="course_name" id="course_name" type="text">
+            @error('course_name')
+            <p class="text-sm text-red-600 font-medium">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-5">
+            <label class="label" for="issue_date">Issue date</label>
+            <input class="number" wire:model="issue_date" id="issue_date" type="text">
+            @error('course_name')
+            <p class="text-sm text-red-600 font-medium">{{ $message }}</p>
+            @enderror
+        </div>
+        @endif
        <div class="flex gap-x-4">
            <button wire:loading.attr="disabled" type="submit" class="bg-green-600 text-white py-2 px-5 rounded">
                Generate
@@ -162,9 +185,11 @@
            </button>
        </div>
     </form>
-   @if(!empty($preview_img))
-        <img width="700" src="{{$preview_img}}" alt="">
-   @endif
+   <div class="">
+       @if(!empty($preview_img))
+           <img width="700" src="{{$preview_img}}" alt="">
+       @endif
+   </div>
     
 {{--    <div class="fixed w-full h-full z-30 bg-gray-700 opacity-75"></div>--}}
 

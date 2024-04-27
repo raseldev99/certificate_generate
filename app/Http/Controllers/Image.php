@@ -22,7 +22,8 @@ class Image extends Controller
 	
 	public function certificate($template_url)
 	{
-		return view('welcome',compact('template_url'));
+		$isDefault = false;
+		return view('welcome',compact('template_url','isDefault'));
 	}
 	
 	public function upload_template(Request $request)

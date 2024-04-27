@@ -6,7 +6,7 @@
 	use Illuminate\Support\Facades\Route;
 	
 Route::middleware(['auth','verified'])->group(function (){
-	Route::view('/', 'welcome')->name('dashboard');
+	Route::view('/', 'welcome',['isDefault'=>true])->name('dashboard');
 	Route::get('/download',[Download::class,'index'])->name('download');
 	Route::get('/download/{name}',[Download::class,'download'])->name('download_file');
 	Route::get('/download_d/{name}',[Download::class,'delete'])->name('delete_file');
