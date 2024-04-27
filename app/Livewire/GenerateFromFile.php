@@ -154,16 +154,16 @@ class GenerateFromFile extends Component
 					->writeText($this->successful_text,base_path('public/roboto-light.ttf'),48,'#000000',Image::ALIGN_CENTER,1630,Image::ALIGN_CENTER,Image::ALIGN_TOP)
 					->writeText($this->course_name,base_path('public/font.ttf'),48,'#000000',Image::ALIGN_CENTER,1723,Image::ALIGN_CENTER,Image::ALIGN_TOP)
 					->writeText($this->issue_date,base_path('public/roboto-regular.ttf'),36,'#000000',722,2087,Image::ALIGN_LEFT,Image::ALIGN_TOP)
-					->savePNG($path.'/certificates'.'.png');
-				return response()->download($path.'/certificates'.'.png')->deleteFileAfterSend(true);
+					->savePNG($path.'/'.$this->preview_name.'.png');
+				return response()->download($path.'/'.$this->preview_name.'.png')->deleteFileAfterSend(true);
 			}else{
 				Image::fromPath($src)
 					->writeText($this->preview_name,$font_path,$this->font_size,$this->font_color,$position_x,$position_y,$anchor_x,$anchor_y,$this->rotation,$this->letterSpacing)
 					->writeText($this->successful_text,base_path('public/roboto-light.ttf'),48,'#000000',Image::ALIGN_CENTER,1630,Image::ALIGN_CENTER,Image::ALIGN_TOP)
 					->writeText($this->course_name,base_path('public/font.ttf'),48,'#000000',Image::ALIGN_CENTER,1723,Image::ALIGN_CENTER,Image::ALIGN_TOP)
 					->writeText($this->issue_date,base_path('public/roboto-regular.ttf'),36,'#000000',722,2087,Image::ALIGN_LEFT,Image::ALIGN_TOP)
-					->saveJPG($path.'/certificates'.'.jpg',100);
-				return response()->download($path.'/certificates'.'.jpg')->deleteFileAfterSend(true);
+					->saveJPG($path.'/'.$this->preview_name.'.jpg',100);
+				return response()->download($path.'/'.$this->preview_name.'.jpg')->deleteFileAfterSend(true);
 			}
 		}else{
 			if ($this->type === 'png'){
